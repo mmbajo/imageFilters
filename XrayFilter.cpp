@@ -1,4 +1,5 @@
-// XrayFilter.cpp：ブロック処理（フレーム処理共用もあり）用フィルタ処理を記述する。
+// XrayFilter.cpp：Processing Block
+// Machine Excercise for Image Processing newbies
 
 #include <windows.h>
 #include "XrayFilter.h"
@@ -22,70 +23,76 @@ CXrayFilter::~CXrayFilter()
 
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
-*			（379, 473）の画素を画素値255にする関数を、Test関数に作成しなさい。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
+*			Create a function that transforms (379, 473) pixel's value to 255.
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 出力画像
+	// Define Output Image
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
-	pOut[303099] = 255;
+	const int Width = 640;
+	const int Height = 746;
+	int index = 473 * Width + 379
+	
+	pOut[index] = 255;
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	return TRUE;
 }
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test_2
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
-*			全ての画素を画素値255にする関数を、Test_2関数に作成しなさい。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test_2
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
+*			Create a function that transforms all pixel value to 255.
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test_2(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 出力画像
+	// Define Output Image
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
 	for (int j = 0; j < 746; j++) {
 		for (int i = 0; i < 640; i++) {
@@ -93,39 +100,40 @@ BOOL CXrayFilter::Test_2(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 		}
 	}
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	return TRUE;
 }
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test_3
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
-*			（200, 473）から（500, 473）を結ぶ、画素値255の直線を引く関数を、Test_3関数に作成しなさい。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test_3
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
+*			Create a function that draws a straight line connecting (200, 473) and (500, 473) with a pixel value of 255.
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test_3(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 出力画像
+	// Define Output Image
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
 	const int j = 473;
 
@@ -135,39 +143,40 @@ BOOL CXrayFilter::Test_3(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 
 	}
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	return TRUE;
 }
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test_4
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
-*			（379, 200）から（379, 500）を結ぶ、画素値255の直線を引く関数を、Test_4関数に作成しなさい。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test_4
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
+*			Create a function that draws a straight line connecting (379, 200) and (379, 500) with a pixel value of 255.
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test_4(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 出力画像
+	// Define Output Image
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
 	const int i = 379;
 
@@ -177,39 +186,40 @@ BOOL CXrayFilter::Test_4(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 
 	}
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	return TRUE;
 }
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test_5
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
-*			（200, 200）から（500, 500）を結ぶ、画素値255の直線を引く関数を、Test_5関数に作成しなさい。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test_5
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
+*			Create a function that draws a straight line connecting (200, 200) and (500, 500) with a pixel value of 255.
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test_5(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 出力画像
+	// Define Output Image
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
 	for (int j = 200; j < 500; j++) {
 		for (int i = 200; i < 500; i++) {
@@ -222,40 +232,41 @@ BOOL CXrayFilter::Test_5(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 		}
 	}
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	return TRUE;
 }
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test_6
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
-*			左上の画素が（298,413）、右下の画素が（498,673）となる、画素値255の長方形を作成する関数を、
-*			Test_6関数に作成しなさい。ここで、長方形は、外周のみでなく、内部も画素値255となっていること。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test_6
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
+*			Create a function in Test_6 that creates a rectangle with a pixel value of 255, with the upper left pixel at (298,413) and the lower right pixel at (498,673).
+*			Here, the rectangle has a pixel value of 255 not only in the outer periphery but also in the interior.
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test_6(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 出力画像
+	// Define Output Image
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
 	for (int j = 0; j < 746; j++) {
 		for (int i = 0; i < 640; i++) {
@@ -267,51 +278,52 @@ BOOL CXrayFilter::Test_6(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 		}
 	}
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	return TRUE;
 }
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test_7
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
-*			入力画像を上下左右反転した画像を出力画像とする関数を、Test_7関数に作成しなさい。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test_7
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
+*			Create a function that mirrors the image with respect to x and y axis.
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test_7(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 画像幅
+	// Image Width
 	const int Width = pImgparam->Param1;
-	// 画像高さ
+	// Image Height
 	const int Height = pImgparam->Param2;
 
-	// 入力画像
+	// Define Input Image Variable
 	BYTE* pIn = new BYTE[Width * Height];
 
 	memcpy(pIn, (BYTE*)pImgparam->Img1, Width * Height);
 
-	// 出力画像
+	// Define Output Image Variable
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
 	memset(pOut, 0, Width * Height);
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
 	int mirrored_index = 0;
 
@@ -324,7 +336,7 @@ BOOL CXrayFilter::Test_7(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 		}
 	}
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	delete[] pIn;
 
@@ -332,49 +344,50 @@ BOOL CXrayFilter::Test_7(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 }
 
 /*++++++
-* クラス名：	CXrayFilter
-* クラス概要：	画像処理フィルタクラス
-* メソッド名：	Test_8
-* 機能概要：	テスト用関数
-* 入力：	<IN> 	IMGPARAM* pImgParam		画像パラメータ
-*					Param1	画像幅
-*					Param2	画像高さ
-*					ALGOPARAM* pAlgoParam	画像処理パラメータ
-* 出力：	<OUT>   IMGPARAM* pImgParam		画像パラメータ
-* 関数値：	BOOL
-*  TRUE		正常
-*  FALSE	異常
-* 使用例：  ---
-* 詳細記述：
+* Class Name：			CXrayFilter
+* Class Overview：		Image Processing Filter Class
+* Method Name：			Test_8
+* Function Overview：	Test Function
+* Input：				<IN> 	IMGPARAM* pImgParam		Image Parameter
+*								Param1					Image Width
+*								Param2					Image Height
+*								ALGOPARAM* pAlgoParam	Image Processing Parameter
+* Output：				<OUT>   IMGPARAM* pImgParam		Image Parameter
+* Function Value：		BOOL
+*							TRUE		Pass
+*							FALSE		Fail
+* Example of use：  ---
+* Description：
 *			入力画像の画素値が、パラメータ01より大きい場合、画素値255、それ以外の場合、
 *			画素値0の出力画像とする関数を、Test_8関数に作成しなさい。
-* 変更履歴：
-*  新規 2010/8/12 山崎健史
+* Change History：
+*  First  Draft 2010/08/12 Yamazaki, Takeshi
+*  Second Draft 2019/11/22 Bajo, Mark
 *  ---
 ------*/
 BOOL CXrayFilter::Test_8(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* pOutparam)
 {
-	//=== 画像入力 ===//
+	//=== Image Input ===//
 
-	// 画像幅
+	// Image Width
 	const int Width = pImgparam->Param1;
-	// 画像高さ
+	// Image Height
 	const int Height = pImgparam->Param2;
 
-	// 入力画像
+	// Define Input Image Variable
 	BYTE* pIn = new BYTE[Width * Height];
 
 	memcpy(pIn, (BYTE*)pImgparam->Img1, Width * Height);
 
-	// 出力画像
+	// Define Output Image Variable
 	BYTE* pOut = (BYTE*)pImgparam->Img1;
 
 	memset(pOut, 0, Width * Height);
 
-	// 入力パラメータ
+	// Constant parameters to be set in ImageEdit.exe
 	const int Param01 = pAlgoparam->Param1;
 
-	//=== ここから記述します ===//
+	//=== Input your code below ===//
 
 	for (int j = 0; j < Height; j++) {
 		for (int i = 0; i < Width; i++) {
@@ -389,7 +402,7 @@ BOOL CXrayFilter::Test_8(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* p
 		}
 	}
 
-	//=== ここまで記述します ===//
+	//=== Your code ends here ===//
 
 	delete[] pIn;
 
