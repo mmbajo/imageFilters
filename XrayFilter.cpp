@@ -1191,30 +1191,65 @@ BOOL CXrayFilter::Test_18(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* 
 
 	const int nHalf = floor(Param01 / 2);
 	const int total = Param01 * Param01;
+
+	// Initialize firstRowSum
+	int firstRowSum = 0;
 	
 	// Move kernel downwards
 	for (int j = nHalf; j < Height - nHalf; j++) {
 
-		// Initialize temp sum
-		int tempSum = 0;
+		// Initialize temp sum and firstColumnSum
+		int tempSumForCols = 0;
+		int tempSumForRows = 0;
 		int firstColumnSum = 0;
 
 		// Accumulate initial kernel sum to tempSum
-		for (int kj = -nHalf; kj <= nHalf; kj++) {
-			for (int ki = 0; ki < Param01; ki++) {
+		if (j = nHalf) {
+			for (int kj = -nHalf; kj <= nHalf; kj++) {
+				for (int ki = 0; ki < Param01; ki++) {
 
-				tempSum += pIn[(j + kj) * Width + ki];
+					tempSumForCols += pIn[(j + kj) * Width + ki];
+					tempSumForRows += pIn[(j + kj) * Width + ki];
 
-				// initialize firstColumnSum
-				if (ki == 0) {
-					firstColumnSum += pIn[(j + kj) * Width];
+					// Initialize firstColumnSum
+					if (ki == 0) {
+						firstColumnSum += pIn[(j + kj) * Width];
+					}
+
+					// Initialize firstRowSum
+					if (kj == -nHalf) {
+						firstRowSum += pIn[ki]
+					}
 				}
+			}
+		}
+		else {
+			// define newRowSum
+			int newRowSum = 0;
+
+			for (int ki = -nHalf; ki <= nHalf; kj++) {
+
+				newRowSum += pIn[(j + nHalf) * Width + (ki)];
 
 			}
+
+			// update tempSumForRows
+			tempSumForRows = tempSumForRows - firstRowSum + newRowSum
+
+			// update firstRowSum
+			for (int ki = -nHalf; ki <= nHalf; ki++) {
+
+				firstRowSum += pIn[(j - nHalf) * Width + (ki)];
+
+			}
+
+			// Set tempSumForCols as the updated tempSumForRows
+			tempSumForCols = tempSumForRows;
+
 		}
 
 		// Input the first iteration result
-		pOut[j * Width] = floor(tempSum / total);
+		pOut[j * Width] = floor(tempSumForRows / total);
 
 		// Move kernel sideways, start at index 1, not 0
 		for (int i = nHalf + 1; i < Width - nHalf; i++) {
@@ -1229,7 +1264,7 @@ BOOL CXrayFilter::Test_18(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* 
 			}
 
 			// update tempSum by subtracting the firstColumnSum of the previous iteration and adding the newColumnSum introduced
-			tempSum = tempSum - firstColumnSum + newColumnSum;
+			tempSumForCols = tempSumForCols - firstColumnSum + newColumnSum;
 
 			// update firstColumnSum
 			firstColumnSum = 0;
@@ -1239,10 +1274,9 @@ BOOL CXrayFilter::Test_18(IMGPARAM* pImgparam, ALGOPARAM* pAlgoparam, OUTPARAM* 
 				firstColumnSum += pIn[(j + kj) * Width + (i - nHalf)];
 
 			}
-			
 
 			// store result
-			pOut[j * Width + i] = floor(tempSum / total);
+			pOut[j * Width + i] = floor(tempSumForCols / total);
 
 		}
 	}
